@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Logowanie</h1>
-  <form method="POST">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Zaloguj się!</button>
-  </form>
+  <div class="login-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="flash {{ category }}">{{ message }}</div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+      <h1>Logowanie</h1>
+      <form method="POST" class="auth-form">
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Zaloguj się!</button>
+      </form>
+  </div>
 {% endblock %}

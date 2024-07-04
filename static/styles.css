@@ -1,18 +1,19 @@
+/*
 .messages-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  background-color: #f0f0f0; /* Kolor tła dla całej sekcji wiadomości */
-  border-radius: 8px; /* Zaokrąglenie rogów */
+  background-color: #f0f0f0; # Kolor tła dla całej sekcji wiadomości
+  border-radius: 8px; # Zaokrąglenie rogów
 }
 
 .message-card {
-  background-color: #fff; /* Kolor tła karty wiadomości */
-  border: 1px solid #ddd; /* Kolor obramowania */
-  border-radius: 8px; /* Zaokrąglenie rogów */
+  background-color: #fff; # Kolor tła karty wiadomości
+  border: 1px solid #ddd; # Kolor obramowania
+  border-radius: 8px; # Zaokrąglenie rogów
   padding: 0.5rem 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Cień */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); # Cień
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -23,20 +24,245 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
-  color: #666; /* Kolor tekstu */
+  color: #666; # Kolor tekstu
 }
 
 .message-sender {
-  font-weight: bold; /* Pogrubienie imienia nadawcy */
+  font-weight: bold; # Pogrubienie imienia nadawcy
 }
 
 .message-timestamp {
   font-size: 0.8rem;
-  color: #aaa; /* Kolor znacznika czasu */
+  color: #aaa; # Kolor znacznika czasu
 }
 
 .message-content {
   font-size: 1rem;
-  color: #333; /* Kolor tekstu wiadomości */
+  color: #333; # Kolor tekstu wiadomości
   padding-top: 0.5rem;
+}
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #2851a4;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.auth-buttons .button {
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background-color: #4267B2;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 0.5rem;
+}
+
+.auth-buttons .button:hover {
+    background-color: #365899;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.login-container, .register-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 300px;
+    text-align: center;
+}
+
+.auth-form input {
+    width: 95%;
+    height: 40px;
+    padding: 0.1rem;
+    padding-left: 1rem;
+    margin: 0.75rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: small;
+}
+
+.auth-form button {
+    width: 100%;
+    height: 40px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: small;
+}
+
+.auth-form button:hover {
+    background-color: #365899;
+}
+
+.chat-container {
+    display: flex;
+    height: 93vh;
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.current_user {
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: #84a3e1;
+    color: white;
+    width: 8%;
+    text-align: center;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 1rem;
+    background-color: #f0f2f5;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 0.5rem;
+    background-color: white;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.message-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.message-sender {
+    font-weight: bold;
+}
+
+.message-timestamp {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.message-content {
+    font-size: 1rem;
+    color: #333;
+    padding-top: 0.5rem;
+}
+
+.message-form {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.receiver-select {
+    width: 20%;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.message-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.send-button {
+    padding: 0.5rem 1rem;
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #365899;
+}
+
+.flash {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }

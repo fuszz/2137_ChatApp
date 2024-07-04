@@ -1,38 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Czat</h1>
-  <div class="current_user">{{current_user.username}}</div>
-  <div class="users">
-    <h2>Użytkownicy</h2>
-    <ul>
-      {% for user in users %}
-        <li>{{ user.username }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="messages">
-    <h2>Wiadomości</h2>
-    <div class="messages-container">
-      {% for message in messages %}
-        <div class="message-card">
-          <div class="message-header">
-            <span class="message-sender">{{ message.sender.username }}</span>
-            <span class="message-timestamp">{{ message.timestamp }}</span>
+  <div class="chat-container">
+      <div class="current_user">{{current_user.username}}</div>
+      <div class="sidebar">
+          <h2>Użytkownicy</h2>
+          <ul>
+              {% for user in users %}
+                  <li>{{ user.username }}</li>
+              {% endfor %}
+          </ul>
+      </div>
+      <div class="messages">
+          <h2>Wiadomości</h2>
+          <div class="messages-container">
+              {% for message in messages %}
+                  <div class="message-card">
+                      <div class="message-header">
+                          <span class="message-sender">{{ message.sender.username }}</span>
+                          <span class="message-timestamp">{{ message.timestamp }}</span>
+                      </div>
+                      <div class="message-content">
+                          {{ message.content }}
+                      </div>
+                  </div>
+              {% endfor %}
           </div>
-          <div class="message-content">
-            {{ message.content }}
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+          <form method="POST" action="{{ url_for('send_message') }}" class="message-form">
+              <select name="receiver_id" class="receiver-select">
+                  {% for user in users %}
+                      <option value="{{ user.id }}">{{ user.username }}</option>
+                  {% endfor %}
+              </select>
+              <input type="text" name="content" placeholder="Wpisz tu swoją wiadomość" required class="message-input">
+              <button type="submit" class="send-button">Wyślij</button>
+          </form>
+      </div>
   </div>
-  <form method="POST" action="{{ url_for('send_message') }}">
-    <select name="receiver_id">
-      {% for user in users %}
-        <option value="{{ user.id }}">{{ user.username }}</option>
-      {% endfor %}
-    </select>
-    <input type="text" name="content" placeholder="Wpisz tu swoją wiadomość" required>
-    <button type="submit">Wyślij</button>
-  </form>
 {% endblock %}
