@@ -11,12 +11,20 @@
     </ul>
   </div>
   <div class="messages">
-    <h2>Messages</h2>
-    <ul>
+    <h2>Wiadomości</h2>
+    <div class="messages-container">
       {% for message in messages %}
-        <li>{{ message.timestamp }} - {{ message.sender.username }}: {{ message.content }}</li>
+        <div class="message-card">
+          <div class="message-header">
+            <span class="message-sender">{{ message.sender.username }}</span>
+            <span class="message-timestamp">{{ message.timestamp }}</span>
+          </div>
+          <div class="message-content">
+            {{ message.content }}
+          </div>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
   <form method="POST" action="{{ url_for('send_message') }}">
     <select name="receiver_id">

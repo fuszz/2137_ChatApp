@@ -2,7 +2,8 @@ from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, login_required, logout_user, current_user
 from main import app, db, login_manager
 from models import User, Message
-from cryptography.fernet import Fernet
+import hashlib
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -18,7 +19,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and user.password == str(hashlib.sha256(password.encode()).hexdigest()):
             login_user(user)
             return redirect(url_for('chat'))
         else:
@@ -30,7 +31,7 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        new_user = User(username=username, password=password)
+        new_user = User(username=username, password=hashlib.sha256(password.encode()).hexdigest())
         db.session.add(new_user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -51,10 +52,7 @@ def chat():
 def send_message():
     receiver_id = request.form.get('receiver_id')
     content = request.form.get('content')
-    key = Fernet.generate_key()
     message = Message(content=content, sender_id=current_user.id, receiver_id=receiver_id)
-    encrypted_message = message.encrypt_message(content, key)
-    message.content = encrypted_message
     db.session.add(message)
     db.session.commit()
     return redirect(url_for('chat'))
