@@ -19,13 +19,6 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Importowanie tras (routes.py) i modeli (models.py)
-from routes import *
-from models import *
-
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
 
 # Punkt wejścia do aplikacji Flask
 if __name__ == '__main__':
