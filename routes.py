@@ -57,6 +57,7 @@ def send_message():
     db.session.commit()
     return redirect(url_for('chat'))
 
+
 @app.route('/logout')
 @login_required
 def logout():

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Welcome to Chat App</h1>
+  <h1>Witaj w komunikatorze Hermes!</h1>
   {% if current_user.is_authenticated %}
-    <a href="{{ url_for('chat') }}">Go to Chat</a>
+    <a href="{{ url_for('chat') }}">Przejdź do czatów</a>
   {% endif %}
 {% endblock %}
