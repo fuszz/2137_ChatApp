@@ -44,7 +44,7 @@ def chat():
     messages = Message.query.filter(
         ((Message.sender_id == current_user.id) | (Message.receiver_id == current_user.id))
     ).order_by(Message.timestamp.asc()).all()
-    return render_template('chat.html', users=users, messages=messages)
+    return render_template('chat.html', users=users, messages=messages, current_user=current_user)
 
 @app.route('/send_message', methods=['POST'])
 @login_required
